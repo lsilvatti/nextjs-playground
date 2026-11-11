@@ -30,14 +30,13 @@ export async function addUser (prevState: AddUserReturn, formData: FormData):Pro
 
     const userDataFromForm: User = {
         user: String(formData.get('user') || ''),
-        role: String(formData.get('role') || ''),
+        role: String(formData.get('role') || 'user'),
         password: String(formData.get('password') || '')
     }
 
-    if(userDataFromForm.user === '' || userDataFromForm.role === '' || userDataFromForm.password === '') {
+    if(userDataFromForm.user === '' || userDataFromForm.password === '') {
         return { error: "Campos não podem ser vazios", fields: { user: userDataFromForm.user, role: userDataFromForm.role }}
     }
-
     users = [...users, userDataFromForm];
 
     updateTag('get-users');

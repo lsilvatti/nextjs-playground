@@ -1,10 +1,10 @@
 'use client'
 
-import { User } from "@/app/actions/example";
+import { User } from "@/app/actions/main";
 import { AddUserForm } from "./AddUserForm";
 import { UserList } from "./UserList";
 import { useActionState, useOptimistic } from "react";
-import { addUser } from "@/app/actions/example";
+import { addUser } from "@/app/actions/main";
 
 export function UserManager ({ initialUsers }: { initialUsers: User[] }) {
     const [state, formAction, isPending] = useActionState(addUser, null);

@@ -1,4 +1,4 @@
-import { User } from "@/app/actions/example";
+import { User } from "@/app/actions/main";
 
 export function UserList ({ users }: { users: User[]}) {
   

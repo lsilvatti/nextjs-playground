@@ -1,5 +1,5 @@
 import { useFormStatus } from "react-dom";
-import { AddUserReturn } from "../app/actions/example";
+import { AddUserReturn } from "../app/actions/main";
 
 function SubmitButton() {
 
@@ -24,6 +24,12 @@ export function AddUserForm({ state, formAction, isPending } : { state: AddUserR
           <input defaultValue={state?.fields?.user} id="textInput" type="text" disabled={isPending} name="user" placeholder="Enter text" className="border border-gray-300 rounded px-2 py-1" />
         </div>
         <div>
+          <label htmlFor="textInput" className="mr-2">
+            Age:
+          </label>
+          <input id="ageInput" type="number" disabled={isPending} name="age" placeholder="Enter Age" className="border border-gray-300 rounded px-2 py-1" />
+        </div>
+        <div>
           <label htmlFor="passwordInput" className="mr-2">
             Password:
           </label>
@@ -34,13 +40,9 @@ export function AddUserForm({ state, formAction, isPending } : { state: AddUserR
             Role:
           </label>
           <div>
-            <input id="roleInputAdmin" defaultChecked={state?.fields?.role === 'admin'} type="radio" disabled={isPending} name="role" value="admin" className="mr-2" />
+            <input id="roleInputAdmin" defaultChecked={state?.fields?.role === 'admin'} type="checkbox" disabled={isPending} name="role" value="admin" className="mr-2" />
             <label htmlFor="roleInputAdmin" className="mr-2">
               Admin
-            </label>
-            <input id="roleInputUser" type="radio" defaultChecked={state?.fields?.role === 'user'} disabled={isPending} name="role" value="user" className="mr-2" />
-            <label htmlFor="roleInputUser" className="mr-2">
-              User
             </label>
           </div>
         </div>

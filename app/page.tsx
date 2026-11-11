@@ -1,5 +1,5 @@
 
-import { getUsers } from "./actions/example";
+import { getUsers } from "./actions/main";
 import { UserManager } from "@/components/UserManager";
 
 export default async function Home() {
