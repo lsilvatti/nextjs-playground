@@ -3,7 +3,6 @@
 
 import { useActionState } from "react";
 import { Property, updatePropertyStatus } from "../app/actions/example1action";
-import { useFormStatus } from "react-dom";
 
 function PropertyListing({ property }: { property: Property }) {
 
@@ -17,10 +16,9 @@ function PropertyListing({ property }: { property: Property }) {
         <form action={action}>
             <div className="p-4 border rounded">
                 <div className="mt-4">
-                    <input type="hidden" name="id" value={property.id} />
                     <label>Nome:</label>
                     <input
-                        defaultValue={state?.payload.name ? state?.payload.name : property.name}
+                        defaultValue={state?.payload.name ?? property.name}
                         type="text"
                         className="border p-2 w-full"
                         name='name'
@@ -41,7 +39,7 @@ function PropertyListing({ property }: { property: Property }) {
                 <div className="mt-4">
                     <label>
                         <input
-                            defaultChecked={state?.payload.published ? state?.payload.published : property.published}
+                            defaultChecked={state?.payload.published ?? property.published}
                             type="checkbox"
                             className="mr-2"
                             name='published'
