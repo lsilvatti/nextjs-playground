@@ -44,10 +44,15 @@ export async function addUser (prevState: AddUserReturn, formData: FormData):Pro
     return { success: `Usuário ${userDataFromForm.user} adicionado com sucesso!`}
 }
 
-function fetchUsersFromDb(): Promise<User[]> {
+export interface PartialUser {
+    user: string,
+    role: string
+}
+
+function fetchUsersFromDb(): Promise<PartialUser[]> {
     return new Promise((resolve) => {
         setTimeout(() => {
-            resolve(users);
+            resolve(users.map(user =>( { user: user.user, role: user.role})));
         }, 1000);
     });
 }

@@ -1,28 +1,30 @@
 'use client'
 
-import { User } from "@/app/actions/main";
+import { PartialUser, User } from "@/app/actions/main";
 import { AddUserForm } from "./AddUserForm";
 import { UserList } from "./UserList";
-import { useActionState, useOptimistic } from "react";
+import { startTransition, useActionState, useOptimistic } from "react";
 import { addUser } from "@/app/actions/main";
 
-export function UserManager ({ initialUsers }: { initialUsers: User[] }) {
+export function UserManager ({ initialUsers }: { initialUsers: PartialUser[] }) {
     const [state, formAction, isPending] = useActionState(addUser, null);
 
     const [optimisticUsers, addOptimisticUser] = useOptimistic(
         initialUsers,
-        (currentState, newUser: User) => [...currentState, newUser]
+        (currentState, newUser: PartialUser) => [...currentState, newUser]
     )
 
-    const handleFormSubmit = (formData: FormData) => { 
+const handleFormSubmit = (formData: FormData) => { 
         const user = String(formData.get('user') || '').trim();
-        const role = String(formData.get('role') || '').trim();
+        const role = String(formData.get('role') || 'user').trim();
+        const password = String(formData.get('password') || '').trim();
         
-        if (user && role) {
-            addOptimisticUser({ user, role, password: '' });
-        }
-        
-        formAction(formData);
+        startTransition(() => {
+            if (user && password) { 
+                addOptimisticUser({ user, role });
+            }
+            formAction(formData);
+        });
     }
 
 

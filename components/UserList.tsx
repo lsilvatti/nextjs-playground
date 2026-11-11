@@ -1,6 +1,6 @@
-import { User } from "@/app/actions/main";
+import { PartialUser, User } from "@/app/actions/main";
 
-export function UserList ({ users }: { users: User[]}) {
+export function UserList ({ users }: { users: PartialUser[]}) {
   
     return (
         <div className="mt-4">

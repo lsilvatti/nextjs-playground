@@ -57,6 +57,8 @@ function PropertyListing({ property }: { property: Property }) {
                 >
                     {isPending ? 'Salvando' : 'Salvar Alterações'}
                 </button>
+
+                {state?.message}
             </div>
         </form>
     )
